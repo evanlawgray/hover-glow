@@ -1,0 +1,146 @@
+:root {
+    --background-color: rgb(20, 20, 20);
+    --card-color: rgb(23, 23, 23);
+    --card-width: 300px;
+    --card-height: 260px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.cards {
+    max-width: 1200px;
+    width: calc(100% - 40px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+    height: var(--card-height);
+    width: var(--card-width);
+    position: relative;
+}
+
+.cards:hover > .card::after {
+    opacity: 1;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card::before, .card::after {
+    content: ' ';
+    height: inherit;
+    width: inherit;
+    border-radius: inherit;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.card::before {
+    background: radial-gradient(
+        800px circle at var(--grad-x) var(--grad-y),
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+    );
+    z-index: 3;
+}
+
+.card::after {
+    background: radial-gradient(
+        400px circle at var(--grad-x) var(--grad-y),
+        rgba(255, 255, 255, 0.3),
+        transparent 40%
+    );
+    z-index: 1;
+}
+
+.card > .card-content {
+    content: ' ';
+    border-radius: inherit;
+    background-color: var(--card-color);
+    z-index: 2;
+    position: absolute;
+    inset: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: none;
+}
+
+.card:hover > .card-content {
+    text-shadow: clamp(
+        -100px,
+        calc(
+            calc(var(--grad-x) - calc(var(--card-width) / 2))
+            * -1
+        ),
+        100px
+    )
+    clamp(
+        -118px,
+        calc(
+            calc(var(--grad-y) - calc(var(--card-height) / 2))
+            * -1
+        ),
+        118px
+    )
+    clamp(
+        3px,
+        calc(
+            22
+            * calc(
+                max(
+                    max(
+                        calc(var(--grad-x) - calc(var(--card-width) / 2)),
+                        calc(-1 * calc(var(--grad-x) - calc(var(--card-width) / 2)))
+                    ),
+                    max(
+                        calc(var(--grad-y) - calc(var(--card-height) / 2)),
+                        calc(-1 * calc(var(--grad-y) - calc(var(--card-height) / 2)))
+                    )
+                ) / 300
+            )
+        ),
+        22px
+    )
+    rgba(0, 0, 0, 0.8);
+}
+/* Attempt to scale amount of text-shadow offset based on distance of mouse from center of card - doesn't work.
+calc(
+        calc(
+            calc(
+                var(--grad-x) - calc(var(--card-width) / 2)
+            ) * -1
+        ) * calc(
+            1 -
+            calc(
+                 max(
+                    calc(var(--grad-x) - calc(var(--card-width) / 2)),
+                    calc(-1 * calc(var(--grad-x) - calc(var(--card-width) / 2)))
+                ) / var(--card-width)
+            )
+        )
+    )
+    2px 2px red; */
