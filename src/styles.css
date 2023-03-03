@@ -107,9 +107,9 @@ body {
         118px
     )
     clamp(
-        3px,
+        2px,
         calc(
-            22
+            50
             * calc(
                 max(
                     max(
@@ -123,24 +123,7 @@ body {
                 ) / 300
             )
         ),
-        22px
+        50px
     )
-    rgba(0, 0, 0, 0.8);
+    rgba(0, 0, 0, 0.5);
 }
-/* Attempt to scale amount of text-shadow offset based on distance of mouse from center of card - doesn't work.
-calc(
-        calc(
-            calc(
-                var(--grad-x) - calc(var(--card-width) / 2)
-            ) * -1
-        ) * calc(
-            1 -
-            calc(
-                 max(
-                    calc(var(--grad-x) - calc(var(--card-width) / 2)),
-                    calc(-1 * calc(var(--grad-x) - calc(var(--card-width) / 2)))
-                ) / var(--card-width)
-            )
-        )
-    )
-    2px 2px red; */
